@@ -24,3 +24,9 @@ python3 app.py
 ```
 "# davillond-yengil-yukla-bot" 
 "# Dovillond-bot" 
+![image](https://github.com/BoborahimAlisherovich/Download-bot/assets/157810653/8293d435-8f8d-49a7-a13b-10a74349c4a9)
+
+
+
+![image](https://github.com/BoborahimAlisherovich/Download-bot/assets/157810653/97b5fd8a-3f9f-4e18-9937-32895d52bc6b)
+
