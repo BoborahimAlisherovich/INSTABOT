@@ -30,8 +30,9 @@ class Database:
     def create_table_users(self):
         sql = """
         CREATE TABLE IF NOT EXISTS USERS(
-        full_name TEXT,
-        telegram_id NUMBER unique );
+        telegram_id NUMBER unique,
+        full_name TEXT
+        );
               """
         self.execute(sql, commit=True)
 
@@ -46,20 +47,20 @@ class Database:
     def add_user(self, telegram_id:int, full_name:str):
 
         sql = """
-        INSERT INTO Users(telegram_id, full_name) VALUES(?, ?)
+        INSERT INTO Users(telegram_id, full_name) VALUES(?, ?);
         """
         self.execute(sql, parameters=(telegram_id, full_name), commit=True)
 
 
     def select_all_users(self):
         sql = """
-        SELECT * FROM Users
+        SELECT * FROM Users;
         """
         return self.execute(sql, fetchall=True)
 
 
     def select_user(self, **kwargs):
-        sql = "SELECT * FROM Users WHERE "
+        sql = "SELECT * FROM Users WHERE;"
         sql, parameters = self.format_args(sql, kwargs)
 
         return self.execute(sql, parameters=parameters, fetchone=True)
@@ -69,11 +70,10 @@ class Database:
 
 
     def delete_users(self):
-        self.execute("DELETE FROM Users WHERE TRUE", commit=True)
+        self.execute("DELETE FROM Users WHERE TRUE;", commit=True)
     
     def all_users_id(self):
         return self.execute("SELECT telegram_id FROM Users;", fetchall=True)
-
 
 def logger(statement):
     print(f"""

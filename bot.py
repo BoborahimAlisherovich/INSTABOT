@@ -24,12 +24,9 @@ from yutube import youtube_save
 ADMINS = config.ADMINS
 TOKEN = config.BOT_TOKEN
 
-
-
 CHANNELS = config.CHANNELS
 
 dp = Dispatcher()
-
 
 @dp.message(CommandStart())
 async def start_command(message:Message):
@@ -107,29 +104,24 @@ async def instagram_download(message:Message):
         await message.answer(text="Video tayyor")
       
         if result[0]=="video":
-            await message.answer_video(video=result[1],caption="Admin: @Alisherov1ch_002")
+            await message.answer_video(video=result[1],caption="""Admin: @Alisherov1ch_002 """)
         elif result[0]=="rasm":
             await message.answer_photo(photo=result[1], caption="Admin: @Alisherov1ch_002")
         else:
             await message.answer("You sent the wrong link")
 
-
-
-
-
 @dp.message(F.text.contains("youtube"))
 async def youtube_download(message:Message):
         try:
-            await message.answer(text="video yuklanmoqda 🚀")
+            await message.answer(text="Sizning so'rovingiz ko'rib chiqilmoqda...")
 
             result = youtube_save(message.text)
-            video = FSInputFile(result)
+            video = FSInputFile(result) 
             await message.answer_video(video=video, caption="ADMIN: @Alisherov1ch_002")
         except:
             await message.answer(text="Bu videoni yuklay olmadi.")
 
 
-         
 @dp.message(F.text.contains("tiktok"))
 async def tiktok_download(message:Message):
     await message.answer(text="video yuklanmoqda 🚀")
@@ -172,9 +164,6 @@ async def off_startup_notify(bot: Bot):
         except Exception as err:
             logging.exception(err)
 
-
-
-
 async def main() -> None:
     global bot,db
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
@@ -184,10 +173,6 @@ async def main() -> None:
     dp.message.middleware(ThrottlingMiddleware(slow_mode_delay=0.5))
     await dp.start_polling(bot)
     
-
-
-
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
