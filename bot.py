@@ -26,6 +26,13 @@ TOKEN = config.BOT_TOKEN
 
 CHANNELS = config.CHANNELS
 
+
+from aiogram.client.session.aiohttp import AiohttpSession
+
+session = AiohttpSession(proxy='http://proxy.server:3128')
+
+bot = Bot(token=..., session=session)
+
 dp = Dispatcher()
 
 @dp.message(CommandStart())
@@ -166,7 +173,7 @@ async def off_startup_notify(bot: Bot):
 
 async def main() -> None:
     global bot,db
-    bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+    bot = Bot(TOKEN, parse_mode=ParseMode.HTML, session=session)
     db = Database(path_to_db="main.db")
     db.create_table_users()
     await set_default_commands(bot)
